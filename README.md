@@ -1,4 +1,4 @@
-# Image Prompt Compliance Rewriter
+# Image Prompt Safe
 
 [中文](#中文) | [English](#english)
 
@@ -18,7 +18,7 @@
 ### 目录结构
 
 ```text
-image-prompt-compliance-rewriter/
+image-prompt-safe/
 |- SKILL.md
 |- README.md
 |- agents/
@@ -34,14 +34,14 @@ image-prompt-compliance-rewriter/
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R image-prompt-compliance-rewriter ~/.codex/skills/
+cp -R image-prompt-safe ~/.codex/skills/
 ```
 
 安装为仓库级 Codex skill：
 
 ```bash
 mkdir -p .agents/skills
-cp -R image-prompt-compliance-rewriter .agents/skills/
+cp -R image-prompt-safe .agents/skills/
 ```
 
 ### 触发示例
@@ -78,7 +78,7 @@ A Codex skill for rewriting text-to-image prompts. Its first goal is to preserve
 ### Layout
 
 ```text
-image-prompt-compliance-rewriter/
+image-prompt-safe/
 |- SKILL.md
 |- README.md
 |- agents/
@@ -94,14 +94,14 @@ Install as a user-scoped Codex skill:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R image-prompt-compliance-rewriter ~/.codex/skills/
+cp -R image-prompt-safe ~/.codex/skills/
 ```
 
 Install as a repository-scoped Codex skill:
 
 ```bash
 mkdir -p .agents/skills
-cp -R image-prompt-compliance-rewriter .agents/skills/
+cp -R image-prompt-safe .agents/skills/
 ```
 
 ### Trigger Examples

@@ -1,5 +1,5 @@
 ---
-name: image-prompt-compliance-rewriter
+name: image-prompt-safe
 description: "Rewrite text-to-image prompts into intent-preserving, policy-aware, high-quality image prompts. Use whenever a user asks to generate an image, 文生图, create or optimize an image prompt, adapt an image prompt for GPT Image/Image 2/Imagen/Firefly/Midjourney/other generators, or repair a prompt that was rejected or produced weak results."
 ---
 
