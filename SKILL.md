@@ -3,9 +3,9 @@ name: image-prompt-safe
 description: "Rewrite text-to-image prompts into intent-preserving, policy-aware, high-quality image prompts. Use whenever a user asks to generate an image, 文生图, create or optimize an image prompt, adapt an image prompt for GPT Image/Image 2/Imagen/Firefly/Midjourney/other generators, or repair a prompt that was rejected or produced weak results."
 ---
 
-# Image Prompt Compliance Rewriter
+# Image Prompt Safe
 
-Use this skill before sending a text prompt to an image model or returning a final image-generation prompt.
+Use this portable Agent Skill before sending a text prompt to an image model or returning a final image-generation prompt.
 
 The skill has two goals in this order:
 
@@ -23,6 +23,7 @@ Start every rewrite by extracting the user's intent:
 - setting, props, era, and culture
 - medium, model target, genre, style, and reference constraints
 - composition, framing, aspect ratio, color, lighting, and detail level
+- intensity and aesthetic tendency, such as sensual, glamorous, cute, imposing, romantic, gritty, graphic, restrained, or documentary
 - explicit must-keep and must-avoid requirements
 
 Keep those elements unless they conflict with safety policy, rights/privacy constraints, or the target model's explicit restrictions.
@@ -33,9 +34,12 @@ Do not silently change:
 - medium or art style
 - core setting or action
 - emotional tone
+- attraction, sensuality, power, humor, darkness, cuteness, luxury, or other safe directional intensity the user asked for
 - hard constraints such as text to render, product details, layout, aspect ratio, or reference fidelity
 
 When a material change is required, prefer the nearest safe alternative and briefly say what changed if the user asked for a prompt rather than immediate image generation.
+
+Do not make prompts safer than necessary. If an adult request is allowed but uses wording that may be unstable, preserve its intended visual intensity while translating only the risky mechanism.
 
 ## Workflow
 
@@ -43,21 +47,34 @@ For each request:
 
 1. Identify the target model when the user names one. If no model is named, use the cross-provider baseline below.
 2. Extract an `intent ledger` from the prompt. Keep it mentally unless the user asks to see it.
-3. Scan for safety, rights, privacy, and quality risks.
-4. Make the minimum rewrite that resolves wording risk while retaining the intent ledger.
-5. Add quality details only where the user left gaps or the target model benefits from them.
-6. Generate or return the rewritten prompt in the user's language unless the user or model context asks otherwise.
+3. Classify the request as low, medium, or high rewrite pressure.
+4. Scan for safety, rights, privacy, and quality risks.
+5. Make the minimum rewrite that resolves wording risk while retaining the intent ledger and its intensity.
+6. Add quality details only where the user left gaps or the target model benefits from them.
+7. Generate or return the rewritten prompt in the user's language unless the user or model context asks otherwise.
 
 Do not explain every substitution during ordinary image generation. Use the rewritten prompt directly.
+
+## Rewrite Pressure
+
+Choose the lightest level that fits.
+
+| Level | Use When | Rewrite Behavior |
+| --- | --- | --- |
+| Low | prompt is already safe and visually clear | preserve wording and add little or nothing |
+| Medium | intent is allowed but some wording is fragile, ambiguous, or quality-poor | translate risky terms while preserving intensity, focal emphasis, and aesthetic direction |
+| High | intent conflicts with policy, rights, privacy, or named-provider restrictions | refuse the unsafe part or offer the nearest safe adaptation; do not pretend it is the same request |
+
+For medium-pressure adult attractiveness prompts, do not flatten `sexy` into merely `elegant` by default. Preserve the requested tendency with visual terms such as `sensual adult glamour`, `voluptuous silhouette`, `strong physical appeal`, `confident flirtatious energy`, `beach glamour`, `fitness editorial`, or other provider-appropriate direction.
 
 ## Cross-Provider Baseline
 
 Use provider-neutral art direction first:
 
 - state the subject, action, setting, medium, and desired finish clearly
-- prefer observable visual language over arousal, shock, or evasion language
+- prefer observable visual language over evasion language; keep allowed intensity when the user asked for it
 - make human age unambiguous when age affects safety
-- prefer whole-scene composition and overall anatomy over isolated sexual or violent detail
+- keep composition and focal emphasis when allowed; avoid isolated sexual or graphic detail when it creates policy or provider risk
 - add negative constraints sparingly and only when they help safety, anatomy, artifacts, text rendering, or composition
 - avoid policy circumvention wording such as `ignore safety`, `uncensored`, or encoded instructions
 
@@ -70,19 +87,19 @@ Apply these rules to women, men, and people of any gender presentation.
 - Preserve the requested gender presentation and appearance traits when safe.
 - Use `adult` or an adult age range when sexuality, romance, swimwear, underwear, nightlife, private spaces, or body emphasis makes age material.
 - Never combine youth-coded wording with sexualized styling, intimate framing, erotic action, voyeuristic camera language, or sexual body-part emphasis.
-- Describe appeal through presence, posture, styling, expression, silhouette, lighting, and composition.
+- Describe appeal through presence, posture, styling, expression, silhouette, lighting, composition, and safe sensual or physical-intensity cues when the user asked for them.
 - Prefer balanced body proportions, stable pose, natural hands, and realistic or style-consistent anatomy.
 - Avoid turning breasts, buttocks, groin, underwear exposure, nipples, abs, crotch bulge, or other sexualized anatomy into the prompt's isolated focal point.
 
-For adult glamour, fitness, beach, swimwear, formalwear, fashion, or romance images, keep the requested attractiveness but route it through aesthetic direction. Examples:
+For adult glamour, fitness, beach, swimwear, formalwear, fashion, or romance images, keep the requested attractiveness and intensity but route risky wording through aesthetic direction. Examples:
 
 | Fragile wording | Intent-preserving direction |
 | --- | --- |
-| sexy woman, seductive man | attractive adult with confident presence and polished styling |
-| hot body | fit or curvy silhouette as requested, natural proportions, flattering wardrobe and pose |
-| provocative pose | poised editorial pose, relaxed confidence, graceful movement |
+| sexy woman, seductive man | sensual adult glamour or strong adult physical appeal with the requested energy |
+| hot body | fit, curvy, voluptuous, lean, or muscular silhouette as requested, with natural proportions |
+| provocative pose | flirtatious or body-confident editorial pose when allowed; remove explicit sexual staging |
 | lustful gaze | expressive gaze, magnetic eye contact, composed facial expression |
-| focus on chest, butt, groin | flattering whole-figure composition and silhouette |
+| focus on chest, butt, groin | preserve the requested curvy or muscular emphasis through silhouette, wardrobe fit, pose, and framing unless the named provider allows more |
 | barely covered | wardrobe cut, material, layering, drape, and tasteful coverage |
 
 Load [references/rewrite-patterns.md](references/rewrite-patterns.md) for human portrait examples and repair moves.
@@ -125,6 +142,7 @@ Quality details should serve the image. Do not bury the user's request under gen
 - If the user asks for prompt optimization, return the rewritten prompt first.
 - If a provider-specific restriction changes the core intent, state the nearest safe adaptation briefly.
 - If the request is already good, keep the rewrite light.
+- Do not append generic restraint language or long negative prompts by default. Add guardrails only when they materially help the target request.
 - If the user asks to compare models or publish guidance, cite official provider rules when possible.
 
 ## Repair Loop

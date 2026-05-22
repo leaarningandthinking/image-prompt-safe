@@ -14,6 +14,7 @@ Keep:
 - setting/props:
 - style/medium:
 - mood:
+- intensity/tendency:
 - composition/output constraints:
 
 Risk to repair:
@@ -29,7 +30,7 @@ Do not expose this ledger unless the user asks how the rewrite was derived.
 
 ## Human Attractiveness
 
-The intent may be attractiveness. Preserve that intent for adult subjects without reducing the prompt to arousal words or isolated anatomy.
+The intent may be attractiveness. Preserve that intent for adult subjects without reducing the prompt to evasion language or disallowed sexual framing. Do not automatically make adult glamour prim, distant, or generic.
 
 ### Adult Woman In Swimwear
 
@@ -42,7 +43,7 @@ User intent:
 Intent-preserving rewrite:
 
 ```text
-Create a high-end beach fashion portrait of a clearly adult Asian woman in a refined modern swimsuit. Preserve an attractive, confident, vacation-ready mood: mature facial features, composed expression, natural eye contact, healthy balanced proportions, graceful posture, and polished styling. Use a flattering whole-figure or three-quarter composition with sunlit ocean atmosphere, soft sculpted highlights, clean skin texture, and premium travel-magazine finish. Focus on presence, swimwear design, light, and silhouette rather than isolated anatomy. Keep the image non-explicit and free of voyeuristic framing.
+Create a high-end beach glamour portrait of a clearly adult Asian woman in a refined modern swimsuit. Preserve the sensual vacation appeal: mature facial features, confident eye contact, a body-confident pose, healthy balanced proportions, and a flattering curvy silhouette. Use a whole-figure or three-quarter composition with sunlit ocean atmosphere, warm highlights, clean skin texture, and premium travel-magazine finish. Let the swimsuit design, silhouette, light, and confident energy carry the attraction without explicit sexual staging.
 ```
 
 ### Adult Man In Fitness Portrait
@@ -56,7 +57,7 @@ User intent:
 Intent-preserving rewrite:
 
 ```text
-Create a cinematic fitness portrait of a clearly adult man with an athletic build and confident presence after a demanding training session. Preserve the strong physical appeal through realistic muscle definition, stable posture, focused expression, subtle post-workout sheen, and directional gym lighting that shapes the overall silhouette. Use a tasteful editorial composition that emphasizes discipline, energy, wardrobe texture, and anatomy accuracy rather than erotic body-part framing. Keep the treatment non-explicit and polished.
+Create a cinematic fitness portrait of a clearly adult man with an athletic build and strong physical appeal after a demanding training session. Preserve the sensual athletic energy through realistic muscle definition, confident posture, focused expression, subtle post-workout sheen, and directional gym lighting that shapes the body silhouette. Use a polished editorial composition that emphasizes strength, anatomy accuracy, wardrobe texture, and charged presence without explicit sexual staging.
 ```
 
 ### Adult Androgynous Fashion Portrait
@@ -93,7 +94,7 @@ Maintain a clearly adult subject and refined non-explicit treatment. Emphasize w
 
 | Problem | Minimal repair |
 | --- | --- |
-| adult glamour prompt rejected | keep adulthood and attractiveness; remove explicit arousal words, isolated sexual anatomy, and voyeuristic camera language |
+| adult glamour prompt rejected | keep adulthood, attraction, and intensity; remove only the wording or staging that caused the risk |
 | prompt loses the user's idea | reapply the intent ledger and remove unnecessary style substitutions |
 | result too bland | strengthen gesture, wardrobe, silhouette, lighting, expression, environment, and finish |
 | face reads too young | specify mature adult facial structure and adult styling |
