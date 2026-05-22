@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image Prompt Compliance Rewriter"
+  short_description: "Preserve image intent while rewriting prompts safely"
+  default_prompt: "Rewrite this image prompt to preserve the user's intent while improving compliance and output quality."
